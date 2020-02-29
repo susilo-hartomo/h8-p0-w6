@@ -11,11 +11,19 @@ body {
     margin: 0;
     width: 100%;
     min-height: 100%;
+    background-image: url(../img/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: inherit;
 }
 
 h1 {
     justify-content: center;
     text-align: center;
+    margin-bottom: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-size: 48px;
 }
 
 .board {
