@@ -1,0 +1,156 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size)* .9);
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+h1 {
+    justify-content: center;
+    text-align: center;
+}
+
+.board {
+    width: 100%;
+    height: 300px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    grid-template-columns: repeat(3, 100px);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1){
+    border-left: none;
+}
+
+.cell:nth-child(3n){
+    border-right: none;
+}
+.cell:nth-child(n+7){
+    border-bottom: none;
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+.board.x .cell:hover::before{
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-image: url(../img/cross.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    transform: rotate(45deg);
+    background-position: center;
+    opacity: 0.3;
+}
+
+.board.o .cell.x:hover::before{opacity: 0;}
+.board.x .cell.x:hover::before{opacity: 0;}
+.cell.x::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-image: url(../img/cross.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    transform: rotate(45deg);
+    background-position: center;
+}
+
+.board.o .cell:hover::before{
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-image: url(../img/circle.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    transform: rotate(45deg);
+    background-position: center;
+    opacity: 0.3;
+}
+
+.board.o .cell.o:hover::before{opacity: 0;}
+.board.x .cell.o:hover::before{opacity: 0;}
+.cell.o::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-image: url(../img/circle.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+}
+
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winning-message button{
+    font-size: 3rem;
+    /* background-color: blue; */
+    padding: .25em 5em;
+    cursor: pointer;
+    color: rgb(20, 19, 19);
+}
+
+.winning-message button:hover{
+    opacity: .7;
+    color: white;
+    box-shadow: burlywood;
+    background-color: rgba(0, 0, 0, .9);
+}
+
+.winning-message.show {
+    display: flex;
+}
